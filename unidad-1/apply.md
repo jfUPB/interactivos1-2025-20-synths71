@@ -10,9 +10,11 @@
 
 ### Actividad 06
 
+#### Enlace al editor:  
+
 [Movimiento en X circulo](https://editor.p5js.org/synths71/sketches/Wgz2f4Upj)
 
-Codigo del programa 
+#### Codigo del programa: 
 
 ``` js
 let port;
@@ -70,6 +72,7 @@ function connectBtnClick() {
 }
 
 ```
+#### Codigo del micro:bit:
 
 ``` py
 from microbit import *
