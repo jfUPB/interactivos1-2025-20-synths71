@@ -6,7 +6,9 @@
 
 #### Explica cómo funciona el sistema físico interactivo que acabamos de crear.  
 
+Mediante un micro:bit hicimos un sistema fisico para hacer cambiar un objeto cuando se ejecuta en la pantalla de p5j, pero antes de esto hay que realizar un codigo especifamente el micro:bit para que detecte cuando se esta presionando el boton A. Luego de esto en p5j hacemos un codigo para que cree una interfaz cuando se ejecuta el programa con una figura geometrica, la figura va a tener color verde como predeterminado pero va a cambiar a color rojo cuando se presiona el boton A del micro:bit.  
 
+Esto permite visualizar en tiempo real la interacción física con el micro:bit desde el navegador, integrando hardware y software de forma sencilla.  
 
 ### Actividad 06
 
