@@ -23,3 +23,20 @@ if utime.ticks_diff(utime.ticks_ms(), self.startTime) > self.interval
 #### ¿Cuáles son las acciones en el programa?
 
 Las acciones son las cosas que se hacen cuando ocurre un evento. En este programa las acciones son prender y apagar los leds en unos determinados leds en el micro:bit y luego de esto hacer una espera con un tiempo determinado que en este caso son 1 segundo para un led y 0.5 segundos para otro led, y cuando haga todo esto, lo repita en un bucle infinito. Esto se ejecuta de manera controlada gracias a la clase pixel.
+
+### Actividad 02
+
+
+
+### Actividad 03
+
+#### 1.   Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.
+
+#### 2.  Identifica los estados, eventos y acciones en el programa. Los estados son condiciones de espera
+
+Los estados son condiciones de espera
+
+#### 3.  Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
+
+
+Apply: Aplicación 🛠
