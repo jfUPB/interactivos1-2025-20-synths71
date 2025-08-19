@@ -2,54 +2,16 @@
 
 ## 🔎 Fase: Set + Seek
 
-```
-# Imports go at the top
-from microbit import *
-import utime
+### Actividad 05
 
+#### 1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso.
 
-class Semaforo:
-    def __init__(self,tr,ta,tv,col):
-        self.tr = tr
-        self.ta = ta
-        self.tv = tv
-        self.col = col
-        display.set_pixel(self.col,0,9)
-        self.startTime = utime.ticks_ms()
-        self.state = "WAITINRED"
-        
-    def update(self):
-        if self.state == "WAITINRED":
-            if utime.ticks_diff(utime.ticks_ms(),self.startTime) >= self.tr:
-                display.set_pixel(self.col,0,0)
-                display.set_pixel(self.col,1,9)
-                self.startTime = utime.ticks_ms()
-                self.state = "WAITINYELLOW"
-            
-        elif self.state == "WAITINYELLOW":
-            if utime.ticks_diff(utime.ticks_ms(),self.startTime) >= self.ta:
-                display.set_pixel(self.col,1,0)
-                display.set_pixel(self.col,2,9)
-                self.startTime = utime.ticks_ms()
-                self.state = "WAITINGREEN"
-                
-        elif self.state == "WAITINGREEN":
-            if utime.ticks_diff(utime.ticks_ms(),self.startTime) >= self.tv:
-                display.set_pixel(self.col,2,0)
-                display.set_pixel(self.col,0,9)
-                self.startTime = utime.ticks_ms()
-                self.state = "WAITINRED"
-    
+<img width="931" height="1153" alt="Actividad5Unidad3" src="https://github.com/user-attachments/assets/a7b3e695-11ee-4944-914a-86c2c239f220" />  
 
+#### 2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector. Las columnas son:
+- Estado inicial
+- Evento disparador
+- Acciones
+- Estado final
 
-semaforo1 = Semaforo(5000,2000,3000,0)
-semaforo2 = Semaforo(3000,1000,2000,2)
-semaforo3 = Semaforo(4000,3000,2000,4)
-
-while True:
-    semaforo1.update()
-    semaforo2.update()
-    semaforo3.update()
-```
-
-
+[vectores_bomba3.docx](https://github.com/user-attachments/files/21849024/vectores_bomba3.docx)
