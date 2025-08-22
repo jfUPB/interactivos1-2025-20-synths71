@@ -38,7 +38,6 @@ function draw() {
     text("Tiempo: " + count, width/2, height/2);
     text("Introduce clave: A B A", width/2, height*0.7);
 
-   
     if (millis() - lastTime > 1000) {
       count--;
       lastTime = millis();
@@ -53,58 +52,48 @@ function draw() {
     text("Presiona R para reiniciar", width/2, height*0.65);
   }
 
-  
   drawFixedButtons();
 }
 
 function keyPressed() {
   let k = key.toUpperCase();
 
-  if (state === "CONFIG") {
-    if (k === "S") {
-      lastTime = millis();
-      state = "ARMED";
-    }
-  } 
-  
+  if (state === "CONFIG" && k === "S") {
+    lastTime = millis();
+    state = "ARMED";
+  }
+
   else if (state === "ARMED") {
-    if (k === "A" || k === "B") {
-      
+    if (["A", "B"].includes(k)) {
       if (k === "A") count = min(count + 1, 99);
       if (k === "B") count = max(count - 1, 1);
 
-      
       keySequence.push(k);
-      if (keySequence.length === password.length) {
-        if (arraysEqual(keySequence, password)) {
-          count = 20;
-          state = "CONFIG"; 
-        }
-        keySequence = []; 
+
+      if (keySequence.length === password.length &&
+          keySequence.every((v, i) => v === password[i])) {
+        resetBomb();
+      }
+
+      if (keySequence.length >= password.length) {
+        keySequence = []; // se reinicia si no fue correcta
       }
     }
-    if (k === "R") {
-      count = 20;
-      state = "CONFIG";
-      keySequence = [];
+
+    else if (k === "R") {
+      resetBomb();
     }
-  } 
-  
-  else if (state === "EXPLODED") {
-    if (k === "R") {
-      count = 20;
-      state = "CONFIG";
-      keySequence = [];
-    }
+  }
+
+  else if (state === "EXPLODED" && k === "R") {
+    resetBomb();
   }
 }
 
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) return false;
-  }
-  return true;
+function resetBomb() {
+  count = 20;
+  state = "CONFIG";
+  keySequence = [];
 }
 
 function drawFixedButtons() {
@@ -127,4 +116,5 @@ function drawFixedButtons() {
   }
 }
 ```
+
 
