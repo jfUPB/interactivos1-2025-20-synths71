@@ -5,6 +5,8 @@
 
 ### ¿Qué es un protocolo de comunicación y por qué es importante en la comunicación serial?
 
+Un protocolo serial son unas reglas 
+
 ### ¿Por qué se separan los datos con comas en el protocolo ASCII que exploramos?
 
 ### ¿Por qué es necesario terminar los datos con un carácter que marque el fin del mensaje?
@@ -25,3 +27,4 @@ if (port.availableBytes() > 0) {
 ### ¿Qué hiciste bien en esta unidad que debes continuar haciendo?
 
 ### ¿Qué deberías comenzar a hacer para mejorar tu proceso?
+
