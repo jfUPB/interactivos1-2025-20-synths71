@@ -119,6 +119,11 @@ No te parece que el resultado es un poco más difícil de leer que el texto en A
 <img width="1001" height="734" alt="Captura de pantalla 2025-09-16 112324" src="https://github.com/user-attachments/assets/41c3300d-8ce2-4cd3-a3ee-74aff6b55b76" />
 
 
+<img width="1916" height="909" alt="Captura de pantalla 2025-09-16 114403" src="https://github.com/user-attachments/assets/0454a132-9714-404d-8feb-5848b9f8b328" />
+
+
+
+
 
 
 
