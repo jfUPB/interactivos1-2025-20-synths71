@@ -89,6 +89,12 @@ function updateButtonStates(newAState, newBState) {
 
 - Se cambia el color del trazo a un color aleatorio con algo de transparencia.
 
+## Preguntas de la actividad: 
+
+- **Para que sirve la función: function updateButtonStates**:
+
+Esta función es bastante importante porque traduce los datos del micro:bit que en este caso son A y B a eventos visuales en el sketch de p5.js
+
 ## Actividad 2
 
 <img width="1000" height="716" alt="Captura de pantalla 2025-09-16 110246" src="https://github.com/user-attachments/assets/d270b37f-785e-4d51-8bd6-97a6b9fe9983" />
@@ -120,6 +126,7 @@ No te parece que el resultado es un poco más difícil de leer que el texto en A
 
 
 <img width="1916" height="909" alt="Captura de pantalla 2025-09-16 114403" src="https://github.com/user-attachments/assets/0454a132-9714-404d-8feb-5848b9f8b328" />
+
 
 
 
