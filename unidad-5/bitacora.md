@@ -287,11 +287,12 @@ Además de esto se entienden las ventajas de usar cada uno de las formas de orde
 
 Para terminar aprendí a leer la secuencia de datos en binario usando struct.pack(), y entender cada byte.
 
-La nota que considero que merezco es 4.4.
+La nota que considero que merezco es 4.0, ya que realize los analisis requeridos de la rubrica, haciendo todas las preguntas propuestas y luego haciendo las reflexiones respectivas pero no realize todas las actividades de la unidad.
 
 
 
 <img width="1916" height="909" alt="Captura de pantalla 2025-09-16 114403" src="https://github.com/user-attachments/assets/0454a132-9714-404d-8feb-5848b9f8b328" />
+
 
 
 
