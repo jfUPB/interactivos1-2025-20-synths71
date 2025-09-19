@@ -166,16 +166,78 @@ Por lo que investigue es que ocupa menos espacio y hay menos redundancia al no h
 
 **Captura el resultado del experimento. ¿Cuántos bytes se están enviando por mensaje? ¿Cómo se relaciona esto con el formato '>2h2B'? ¿Qué significa cada uno de los bytes que se envían?**
 
+En 2h dos enteros short con signo de 16 bits cada uno y con 2B dos enteros unsigned char de 8 bits cada uno, lo que da 6 bytes por mensaje.
 
+Los bytes que se envian se interpretan como los xValue, yValue, aState y bState respectivamente.  
 
 **Recuerda de la unidad anterior que es posible enviar números positivos y negativos para los valores de xValue y yValue. ¿Cómo se verían esos números en el formato '>2h2B'?**
+
+Como h es un short con signo, los valores negativos se codifican en complemento a dos, Eso explica por qué a veces en la captura se ven bytes que empiezan con FF: no significa error, sino que es un valor negativo de x o y.
 
 ### Experimento 2:
 
 <img width="1001" height="734" alt="Captura de pantalla 2025-09-16 112324" src="https://github.com/user-attachments/assets/41c3300d-8ce2-4cd3-a3ee-74aff6b55b76" />
 
+**Captura el resultado del experimento. ¿Qué diferencias ves entre los datos en ASCII y en binario? ¿Qué ventajas y desventajas ves en usar un formato binario en lugar de texto en ASCII? ¿Qué ventajas y desventajas ves en usar un formato ASCII en lugar de binario?**
+
+La diferencia es que los datos en binario son puros bytes que a simple vista no parecen mucho más que numeros y ya, cosa que con ASCII no pasa porque por ejemplo se ve asi 1900,636,False,False. Es decir, los números están escritos en caracteres que cualquiera puede leer fácilmente.
+
+*Las ventajas de usar el binario es que es más eficiente y mejor cuando se manejan muchos datos o se necesita rendimiento, por otro lado las desventajas es que es dificil de leer y se necesita saber como es la estructura y no perderse leyendola.*
+
+*Las ventajas de usar el ASCII es que es más fácil de leer y entender y además de esto es más fácil de depurar y probar sin herramientas adicionales, por otro lado las desventajas es que es más pesado y puede ser que la transmisión sea más lenta.*
+
+## Preguntas de la actividad:
+
+**Porque se usa en si la linea de codigo ```data = struct.pack('>2h2B', xValue, yValue, int(aState), int(bState))``` para cambiar la que ya se estaba usando antes y como se llego a ella?**
+
+Lo primero que se tiene que entender es que la linea de codigo ``` data = "{},{},{},{}\n".format(xValue, yValue, aState,bState)``` lo que hace en si es convertir los números y estados a texto, mientras que por el otro lado la de ```data = struct.pack('>2h2B', xValue, yValue, int(aState), int(bState))``` los convierte a bytes y la estructura que se usa para ello es la siguiente:
+
+- > Se usa para poner los bytes más significativos primero.
+
+- 2h dos enteros cortos con signo (2 bytes cada uno → 4 bytes en total).
+
+- 2B dos enteros sin signo de 1 byte cada uno (2 bytes en total).
+
+Y la parte de struct.pack es basicamente para señalar que va a ser en forma de binario.
+
+**En este codigo que esta pasando?**  
+
+```py
+# Imports go at the top
+from microbit import *
+import struct
+uart.init(115200)
+display.set_pixel(0,0,9)
+
+while True:
+    if accelerometer.was_gesture('shake'):
+        xValue = accelerometer.get_x()
+        yValue = accelerometer.get_y()
+        aState = button_a.is_pressed()
+        bState = button_b.is_pressed()
+        data = struct.pack('>2h2B', xValue, yValue, int(aState), int(bState))
+        uart.write(data)
+        uart.write("ASCII:\n")
+        data = "{},{},{},{}\n".format(xValue, yValue, aState,bState)
+        uart.write(data)
+```
+
+Lo que hace es lo que hemos hecho normalmente en las unidades anteriores pero ahora enviando los datos primero en binario y luego en ASCII.
+
+En la linea ```data = struct.pack('>2h2B', xValue, yValue, int(aState), int(bState))``` ya explicamos lo que esta haciendo y como funciona pero ahora añadimos ```uart.write(data)``` que envia esos bytes por el puerto serial.
+
+La linea ```uart.write("ASCII:\n")``` lo que hace es que envia la parte de "ASCII:\n" como un marcador y el resto del codigo es muy similar a como lo hemos estado realizando. 
+
+## Experimentación:
+
+**Prueba de resistencia en el canal seria**
+
+En este expperimento pense en intentar probar si el puerto serial pone resistencia o no cuando en medio del stream de datos válidos aparecen bytes aleatorios.
+
+
 
 <img width="1916" height="909" alt="Captura de pantalla 2025-09-16 114403" src="https://github.com/user-attachments/assets/0454a132-9714-404d-8feb-5848b9f8b328" />
+
 
 
 
