@@ -234,9 +234,65 @@ La linea ```uart.write("ASCII:\n")``` lo que hace es que envia la parte de "ASCI
 
 En este expperimento pense en intentar probar si el puerto serial pone resistencia o no cuando en medio del stream de datos válidos aparecen bytes aleatorios.
 
+**Modificamos el codigo del microbit para que haya bytes aleatorios saliendo**
+
+```py
+from microbit import *
+import struct
+import random
+
+uart.init(115200)
+display.set_pixel(0, 0, 9)
+
+counter = 0
+
+while True:
+    if accelerometer.was_gesture('shake'):
+        xValue = accelerometer.get_x()
+        yValue = accelerometer.get_y()
+        aState = button_a.is_pressed()
+        bState = button_b.is_pressed()
+        
+        # Cada 5 paquetes válidos, enviar uno "ruidoso"
+        if counter % 5 == 0:
+            # Enviar datos corruptos: bytes aleatorios
+            for _ in range(6):  # Mismo tamaño que un paquete válido
+                uart.write(bytes([random.randint(0, 255)]))
+        else:
+            # Enviar datos válidos
+            data = struct.pack('>2h2B', xValue, yValue, int(aState), int(bState))
+            uart.write(data)
+        
+        counter += 1
+        sleep(500)
+```
+
+Haciendo el experimento se espera que al tener bytes aleatorios se deberia desordenar todo el sistema ya que no tiene un mecanismo de sincronización.
+
+*Lo que se espera despues de realizar el ejercicio*:
+
+Se verán secuencias que no respetan el patrón típico y estas dejaran de verse solo para que aparezcan bytes totalmente aleatorios y luego despuesd e mandarlos al navegador, p5js lo interpretara mal despues de pasar por el primero aleatorio.
+
+## Análisis y Reflexión:
+
+Así como en la actividad anterior lo que se queria que se entendiera es como funciona la transacción de datos del microbit al navegador y entender que esta no funciona como uno esperaria que fuera, es decir con mucho orden, en esta actividad se propone entender cómo la forma en la que se empaquetan esos datos afecta directamente su eficiencia, robustez y facilidad de interpretación.
+
+En si el experimento me ayudo a entender que los datos necesitan una forma de protocolo de control para que todo siga en su curso, ya que si hay algún dato que no debería estar ahí entonces este va a afectar todo el resto de la secuencia de datos que pone el microbit cuando estos viajan al navegador.
+
+## Apropiación y Articulación de Conceptos: 
+
+En esta actividad ya pasamos a intentar entender las diferencias entre las diferentes formas que se pueden empaquetar los datos, en la actividad anterior lo que se queria era entender es que la comunicación serial no es tan simple como parece y cada parte requiere de la otra para que el mensaje llegue tal como se espera. En esta actividad pasamos los datos a binario y lo probamos con el microbit usando esto: struct.pack('>2h2B'), que no solo define qué tipo de datos estamos enviando sino también el orden de los bytes, Este protocolo convierte los datos sueltos en paquetes con sentido y ya con esto y con un poco de conocimiento de leer las secuencias en binario se puede entender lo que esta pasando y lo que se esta enviando. 
+
+Además de esto se entienden las ventajas de usar cada uno de las formas de ordenar los datos y se entiende para que casos se podría usar el uno o el otro. La comunicación serial es más que enviar datos, es darle forma a un flujo desordenado para que pueda ser comprendido del otro lado. El protocolo es el lenguaje común, y sin él, lo que llega es solo ruido. 
+
+Para terminar aprendí a leer la secuencia de datos en binario usando struct.pack(), y entender cada byte.
+
+
+
 
 
 <img width="1916" height="909" alt="Captura de pantalla 2025-09-16 114403" src="https://github.com/user-attachments/assets/0454a132-9714-404d-8feb-5848b9f8b328" />
+
 
 
 
