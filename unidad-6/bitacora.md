@@ -207,6 +207,180 @@ Realizando otra modificación se me ocurrio hacer que el circulo en la page2 fue
 
 <img width="1872" height="1011" alt="image" src="https://github.com/user-attachments/assets/a078d1ae-b1b3-461a-954b-508d684c84d3" />
 
+## Actividad 5
+
+<img width="1903" height="975" alt="Captura de pantalla 2025-10-03 024701" src="https://github.com/user-attachments/assets/481ac79c-3c09-46c0-9e2a-588224e89296" />
+
+<img width="1907" height="1056" alt="Captura de pantalla 2025-10-03 024707" src="https://github.com/user-attachments/assets/2f170df3-7a4f-4959-9e46-f8d03b110371" />
+
+<img width="1881" height="985" alt="Captura de pantalla 2025-10-03 024717" src="https://github.com/user-attachments/assets/102ebd60-4f9a-4ac8-b8a2-e157ef6cbf49" />
+
+**Incluye todos los códigos (servidor y clientes) en tu bitácora.**
+
+server.js:
+
+```
+const express = require('express');
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+const port = 3000;
+
+// Servir carpeta "views"
+app.use(express.static('views'));
+
+// Ruta principal → abre page1
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/page1.html');
+});
+
+app.get('/page1', (req, res) => {
+  res.sendFile(__dirname + '/views/page1.html');
+});
+
+app.get('/page2', (req, res) => {
+  res.sendFile(__dirname + '/views/page2.html');
+});
+
+
+// Estado inicial del semáforo
+let carLight = "green"; // rojo - amarillo - verde
+let pedLight = "red";   // rojo - verde
+
+io.on("connection", (socket) => {
+  console.log(`Usuario conectado - ID: ${socket.id}`);
+
+  // Enviar estado actual al conectarse
+  socket.emit("lightUpdate", { carLight, pedLight });
+
+  // Cuando peatón pide cruce
+  socket.on("requestCross", () => {
+    console.log("Botón de peatón presionado!");
+
+    // Carros a amarillo primero
+    carLight = "yellow";
+    pedLight = "red";
+    io.emit("lightUpdate", { carLight, pedLight });
+
+    // Después de 2s → carros en rojo, peatón en verde
+    setTimeout(() => {
+      carLight = "red";
+      pedLight = "green";
+      io.emit("lightUpdate", { carLight, pedLight });
+
+      // Después de 4s → volver al estado normal (carros verde, peatón rojo)
+      setTimeout(() => {
+        carLight = "green";
+        pedLight = "red";
+        io.emit("lightUpdate", { carLight, pedLight });
+      }, 4000);
+
+    }, 2000);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`Usuario desconectado - ID: ${socket.id}`);
+  });
+});
+
+http.listen(port, () => {
+  console.log(`Servidor escuchando en http://localhost:${port}`);
+});
+```
+
+page1.html:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Semáforo - Carros</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="page1.js"></script>
+</head>
+<body>
+  <h1> Semáforo - Carros</h1>
+  <canvas id="carSemaforo" width="200" height="400"></canvas>
+</body>
+</html>
+```
+
+page1.js:
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Semáforo - Carros</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="page1.js"></script>
+</head>
+<body>
+  <h1> Semáforo - Carros</h1>
+  <canvas id="carSemaforo" width="200" height="400"></canvas>
+</body>
+</html>
+```
+
+page2.html:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Semáforo - Peatón</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="page2.js"></script>
+</head>
+<body>
+  <h1> Semáforo - Peatón</h1>
+  <canvas id="pedSemaforo" width="200" height="400"></canvas>
+  <br>
+  <button onclick="requestCross()"> Pedir cruce</button>
+</body>
+</html>
+```
+
+page2.js:
+
+```
+let socket = io();
+let pedLight = "red";
+
+socket.on("lightUpdate", (data) => {
+  pedLight = data.pedLight;
+  drawPedLight();
+});
+
+function requestCross() {
+  socket.emit("requestCross");
+}
+
+function drawPedLight() {
+  let c = document.getElementById("pedSemaforo");
+  let ctx = c.getContext("2d");
+
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, 200, 400);
+
+  ctx.fillStyle = (pedLight === "red") ? "red" : "darkred";
+  ctx.beginPath();
+  ctx.arc(100, 100, 70, 0, 2 * Math.PI);
+  ctx.fill();
+
+  ctx.fillStyle = (pedLight === "green") ? "lime" : "darkgreen";
+  ctx.beginPath();
+  ctx.arc(100, 300, 70, 0, 2 * Math.PI);
+  ctx.fill();
+}
+```
+
+
+
+
+
+
 
 
 
