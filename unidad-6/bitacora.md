@@ -114,6 +114,56 @@ La diferencia es que HTTP es como un intercambio de cosas, por ejemplo de juegos
 
 ## Actividad 3
 
+**Experimento 1**
+<img width="1919" height="1011" alt="image" src="https://github.com/user-attachments/assets/55f695bb-9410-4f9b-9cf9-a76263b48615" />
+
+Al usar Intenta acceder a http://localhost:3000/page1, ya no funciona el servidor y me dice que no se puede obtener pero cuando usamos  http://localhost:3000/pagina_uno ahora si deja meterme al servidor.
+
+Esto nos demuestra que el servidor asocia de forma estricta la URL con la respuesta que devuelve y si no coinciden entonces no va a mostrar nada y va a soltar un error.
+
+**Experimento 2**
+
+Al ver la terminal del page1 tenemos este ID: tRn2L03TIrKczAYYAAAB, además de esto dice que un usuario se conecto con ese id.
+
+Cuando abro el page2 me sale el mismo mensaje de que se conecto un usuario con el ID: hucd3f1CiqHEiobtAAAD
+
+Cierro page1 y aparece este mensaje en la terminal: User disconnected - ID: tRn2L03TIrKczAYYAAAB, y de igual manera cierro page2 y sale el siguiente mensaje en la terminal: User disconnected - ID: hucd3f1CiqHEiobtAAAD
+
+Cuando los clientes se desconectan el servidor sabe exactamente cúal cliente se desconecto, eso muestra que el servidor asocia la conexión a un cliente específico y único mediante su socket.id
+
+**Experimento 3**
+
+Cuando muevo page1 se mueve win1update con sus coordenadas y direcciones y así mismo al mover page2 se mueve win2update ahora con los datos de la segunda pagina.
+
+<img width="740" height="171" alt="image" src="https://github.com/user-attachments/assets/8619e77f-b6f6-47b6-a04f-9cd238bdf09b" />
+
+Experimento clave: 
+
+Al mover la ventana de page1 no se actualizó la visualización en page2 y viendo más lo que aparece en la terminal encontre que socket.emit envía el mensaje solo al mismo cliente que lo generó cosa que el broadcast lo envía a los demás.
+
+**Experimento 4**
+
+Al hacer el cambio del puerto al 3001 me sale el siguiente mensaje: Server is listening on http://localhost:3001
+
+Ahora abriendo el servidor:
+
+<img width="1855" height="1001" alt="image" src="https://github.com/user-attachments/assets/7705c0a2-a51c-429c-b3d6-38fef01bfb15" />
+
+Vemos que solo funciona cuando pongo http://localhost:3001/page1 
+
+Esto muestra que la variable port define la “puerta” en la que el servidor escucha, y que la función listen usa ese número para decidir en qué dirección aceptar conexiones.
+
+## Actividad 4
+
+
+
+
+
+
+
+
+
+
 
 
 
