@@ -209,17 +209,23 @@ Realizando otra modificación se me ocurrio hacer que el circulo en la page2 fue
 
 ## Actividad 5
 
+**Explica tu idea y realiza algunos bocetos**
+
+La idea para esta aplicación interactiva surgio mientras estaba trabajando una actividad de esta misma materia que involucraba un semaforo, me parece que es una buena forma de interacción porque cuando presiono el boton de pedir paso para el peaton, el semaforo para los vehiculos pasa por el amarillo y luego en el rojo, mientras que el de peatones pasa a verde por unos segundos con cierto intervalo de tiempo, el page1 es el que tiene el semaforo para los vehiculos y el de peatones en page2, el boton para pedir paso esta solo en el de page2, así como están ese tipo de botones en algunos semaforos de la ciudad.
+
+**Implementa tu idea**
+
 <img width="1903" height="975" alt="Captura de pantalla 2025-10-03 024701" src="https://github.com/user-attachments/assets/481ac79c-3c09-46c0-9e2a-588224e89296" />
 
 <img width="1907" height="1056" alt="Captura de pantalla 2025-10-03 024707" src="https://github.com/user-attachments/assets/2f170df3-7a4f-4959-9e46-f8d03b110371" />
 
 <img width="1881" height="985" alt="Captura de pantalla 2025-10-03 024717" src="https://github.com/user-attachments/assets/102ebd60-4f9a-4ac8-b8a2-e157ef6cbf49" />
 
-**Incluye todos los códigos (servidor y clientes) en tu bitácora.**
+**Incluye todos los códigos (servidor y clientes) en tu bitácora**
 
 server.js:
 
-```
+```js
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
@@ -308,7 +314,7 @@ page1.html:
 
 page1.js:
 
-```
+```js
 <!DOCTYPE html>
 <html>
 <head>
@@ -344,7 +350,7 @@ page2.html:
 
 page2.js:
 
-```
+```js
 let socket = io();
 let pedLight = "red";
 
@@ -375,6 +381,24 @@ function drawPedLight() {
   ctx.fill();
 }
 ```
+
+## Autoevaluación 
+
+En esta unidad aprendimos como se manejan los servidores, que es la internet y como funciona para poder conectarnos a ella, así como hacer diversos experimentos con los recursos que se dieron en la unidad.
+
+- Actividad 1: En la actividad 1 considero que merezco 5, ya que realice la instalación del servidor en mi computador y además resolvi las dudas que se proponían con mis propias palabras y con lo que veía que me soltaba la terminal de git bash y con lo que veía que pasaba en la pantalla del servidor cuando la movia o hacia el ejercicio que me proponian.
+
+- Actividad 2: En la actividad 2 considero que merezco 5, esto porque leí todos los textos de información detenidamente para entender que era lo que me estaban diciendo y el porque, así como responder las preguntas y ejercicios que proponían con los conocimientos que daban en el parrafo de información de ese ejercicio propuesto ya que era así como parrafo de infomación y luego un ejercicio propuesto y así varias veces durante está actividad, y en algunas de las preguntas que no sabía exactamente la respuesta la intento explicar con mis propias palabras.
+
+- Actividad 3: En está actividad considero que merezco 4.0, ya que realice todos los ejercicios de experimentación y poniendo pruebas en foma de fotos y realizando todos los pasos que me proponían pero en algunos de los experimentos pude haber indagado un poco más para entender mejor algunos de los experimentos y no solo limitarme a poner lo minimo para completar lo que me proponían.
+
+- Actividad 4: En está actividad considero que merezco 4.2, ya que relice todos los experimentos, indagando en estos sobretodo en la parte de codigo para entender que era lo que se estaba cambiando pero no mucho, solo para entender lo más esencial que necesitaba saber para así dar por completado el experimento, también claro poniendo pruebas de los ejercicios.
+
+- Actividad 5: En esta actividad considero que merezco 3.8, ya que la aplicación interactiva me la pense detenidamente para que fuera algo original y que a la vez nosotros pudieramos ver en el día a día, asi como asegurarme de que estuviera funcionando sin ningún problema en el servidor que se nos dio, solo cambiando los codigos del servidor y cliente para que cambiara a la aplicación interactiva que quería proponer pero para poder implementar los codigos me apoye un poco en la IA, ya que aún no sabía exactamente como implementar todo el codigo en un nuevo lenguaje como html y javascript y por este motivo no me puedo poner más alto en la nota.
+
+
+Con la parte de la defensa terminada, la nota de la autoevaluación promediadia es: **4.4**
+
 
 
 
