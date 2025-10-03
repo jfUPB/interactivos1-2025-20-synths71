@@ -155,6 +155,68 @@ Esto muestra que la variable port define la “puerta” en la que el servidor e
 
 ## Actividad 4
 
+**Experimento 1**
+
+Al hacer el proceso indicado llegamos hasta este punto:
+
+<img width="1919" height="1017" alt="image" src="https://github.com/user-attachments/assets/53294c34-b7ec-4c05-9f87-a44b2673b037" />
+
+Esto indica que el cliente page2.html está intentando conectarse con el servidor usando Socket.IO, pero como el servidor está apagado entonces no encuentra la dirección para establecer la conexión.
+
+Habiendo abierto el archivo de page2.html que se encuentra en la carpeta de views no se resuelven los errores y sigue apareciendo los mismos pero abriendo el link normal si se resuelven.
+
+**Experimento 2**
+
+Al hacer los cambios necesarios se logra ver lo siguiente: 
+
+<img width="1757" height="861" alt="image" src="https://github.com/user-attachments/assets/c73c561e-3907-4b44-90d0-c9bd0bfb68d1" />
+
+<img width="1868" height="984" alt="Captura de pantalla 2025-10-03 011847" src="https://github.com/user-attachments/assets/5e7998b4-ee28-4a62-be5e-af70deb760c4" />
+
+Con esto lo que pasa es que page1 y page2 logran conectarse al servidor pero cuando se mueve page2 no se comparten los datos de posición/estado y se ve como en la consola de page1 aparece NOT SYNCED hasta que en algún momento logra un SYNCED con datos viejos o vacíos, pero no se mantiene actualizado.
+
+Esto paso porque al comentar la linea de codigo que se pedía que es la línea que enviaba los datos iniciales al servidor cuando page2 se conectaba, Sin ese emit, el servidor nunca reenvía esos datos a page1, y por eso no hay actualización.
+
+**Experimento 3**
+
+Haciendo lo que se pide en el experimento tenemos:
+
+<img width="1732" height="879" alt="image" src="https://github.com/user-attachments/assets/9b699dba-225a-4e98-940a-a828c4024051" />
+
+Lo que vemos en las consolas es una sincronización en tiempo real entre las dos páginas usando Socket.IO, esto se muestra en la forma que cada vez que una ventana se mueve, envía su posición y tamaño al servidor con socket.emit y así el servidor recibe esa información y la reenvía a la otra ventana y eso es lo que aparece en la consola.
+
+**Experimento 4**
+
+Modifique el codigo del if para que fuera de la siguiente forma añadiendo un consol.log, esto no va a cambiar el comportamiento sino que va a mostrar un pequeño mensaje en la consola.
+
+<img width="1833" height="997" alt="image" src="https://github.com/user-attachments/assets/aa53f402-5a4c-4293-af45-2f0659307719" />
+
+Haciendo un console.log para que aparezca en la consola de page2 se ve que aparece un mensaje que dice "cambio la ventana a:" para luego dar las posiciones normalmente. Haciendo esta actividad comprobamos que el if se ejecuta solo cuando hay un cambio en la posición o tamaño de la ventana, entonces el codigo está diseñado para evitar envios y datos innecesarios.
+
+**Experimento 5**
+
+Haciendo el experimento del cambio de color llegamos a lo siguiente:
+
+<img width="1916" height="1005" alt="Captura de pantalla 2025-10-03 015933" src="https://github.com/user-attachments/assets/7e4d7f21-d1d6-479e-8a07-8716fb9a206e" />
+
+<img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/3830fd0d-154b-4785-b5c9-41026d0c49ca" />
+
+Realizando otra modificación se me ocurrio hacer que el circulo en la page2 fuera más grande o pequeño dependiendo de la distancia y resulto de la siguiente forma:
+
+<img width="1918" height="981" alt="image" src="https://github.com/user-attachments/assets/8b6c79f0-0f54-472c-8c94-6b3d73548cc6" />
+
+<img width="1872" height="1011" alt="image" src="https://github.com/user-attachments/assets/a078d1ae-b1b3-461a-954b-508d684c84d3" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 
