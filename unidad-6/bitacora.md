@@ -315,18 +315,35 @@ page1.html:
 page1.js:
 
 ```js
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Semáforo - Carros</title>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="page1.js"></script>
-</head>
-<body>
-  <h1> Semáforo - Carros</h1>
-  <canvas id="carSemaforo" width="200" height="400"></canvas>
-</body>
-</html>
+let socket = io();
+let carLight = "green";
+ 
+socket.on("lightUpdate", (data) => {
+  carLight = data.carLight;
+  drawCarLight();
+});
+ 
+function drawCarLight() {
+  let c = document.getElementById("carSemaforo");
+  let ctx = c.getContext("2d");
+ 
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, 200, 400);
+ 
+  ctx.fillStyle = (carLight === "red") ? "red" : "darkred";
+  ctx.beginPath();
+  ctx.arc(100, 70, 50, 0, 2 * Math.PI);
+  ctx.fill();
+ 
+  ctx.fillStyle = (carLight === "yellow") ? "yellow" : "darkgoldenrod";
+  ctx.beginPath();
+  ctx.arc(100, 200, 50, 0, 2 * Math.PI);
+  ctx.fill();
+ 
+  ctx.fillStyle = (carLight === "green") ? "lime" : "darkgreen";
+  ctx.beginPath();
+  ctx.arc(100, 330, 50, 0, 2 * Math.PI);
+  ctx.fill();}
 ```
 
 page2.html:
@@ -398,6 +415,9 @@ En esta unidad aprendimos como se manejan los servidores, que es la internet y c
 
 
 Con la parte de la defensa terminada, la nota de la autoevaluación promediadia es: **4.4**
+
+NOTA del profesor: luego de realizar la evaluación decidimos subir la nota a 5 porque se cumplen los objetivos de la unidad aunque la solución se generara con IA. Es bueno resaltar que en la solución no se está usando p5.js, es decir, no se empleó lo aprendido en el caso de estudio. Este detalle, aunque no impacta la nota, si debe llemar la atención porque al pedirle a la IA generar código no se tuvo en cuenta todo el trabajo de investigación previo.
+
 
 
 
