@@ -15,13 +15,16 @@ npm install lo que hace es descargar las dependencias que necesita el servidor p
 
 Observe estos mensajes al mirar la terminal:
 
-```New client connected
+```
+New client connected
 New client connected
 Received message => { type: 'touch', x: 97, y: 230 }
 Received message => { type: 'touch', x: 88, y: 229 }
 Received message => { type: 'touch', x: 81, y: 224 }
 Received message => { type: 'touch', x: 81, y: 216 }
+```
 
 los identificadores de cliente son iguales y no diferencia si son el del desktop o el del mobile, así mismo no les asigna un id distitivo como en la unidad anterior
+
 
 
