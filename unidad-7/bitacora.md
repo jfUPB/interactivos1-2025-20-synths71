@@ -24,7 +24,20 @@ Received message => { type: 'touch', x: 81, y: 224 }
 Received message => { type: 'touch', x: 81, y: 216 }
 ```
 
-los identificadores de cliente son iguales y no diferencia si son el del desktop o el del mobile, así mismo no les asigna un id distitivo como en la unidad anterior
+los identificadores de cliente son iguales y no diferencia si son el del desktop o el del mobile, así mismo no les asigna un id distitivo como en la unidad anterior, solamente muestra los valores en los que se mueve el circulo en este caso y los clientes que se acaban de conectar.
+
+**Describe el comportamiento observado: ¿Funcionó la interacción? ¿Hubo algún retraso (latencia)?** 
+
+Cuando conectamos ambos clientes, el segundo puede mover el circulo que esta en la primera que tiene el desktop, cuando hacemos esto, se actualizan en cada momento los valores a los que movemos el circulo. Se nota un retraso pero no afecta mucho, es solo un poco de retraso que hay.
+
+## Actividad 2
+
+**Explica con tus propias palabras: ¿Por qué es necesario Dev Tunnels en este escenario y cómo funciona conceptualmente?**
+
+
+
+
+
 
 
 
