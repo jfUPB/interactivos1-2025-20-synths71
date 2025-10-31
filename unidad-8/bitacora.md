@@ -3,6 +3,8 @@
 
 # Actividad 1
 
+**Tema musical escogido:**  https://www.youtube.com/watch?v=SV0IF4XVBlE
+
 **1. Documenta los referentes visuales que te inspiren.**
 
 ![Frases De Dj](https://github.com/user-attachments/assets/456dac91-e5f9-4f87-b43a-81d4eb32367f)
@@ -25,14 +27,14 @@ Con el micro:bit complementará el control con entradas físicas, una idea es qu
 
 **4. Haz un bocetos de todas las interfaces del sistema.**
 
+<img width="1152" height="648" alt="Sin título" src="https://github.com/user-attachments/assets/80fee817-650a-409f-8e46-8efaeb2bb341" />
 
+**5. Haz un diagrama que explique cómo se comunicarán los diferentes componentes del sistema.**
 
+<img width="566" height="841" alt="DiagramaFinal" src="https://github.com/user-attachments/assets/a2fb79a6-3e12-4b2e-b816-34721c588efa" />
 
+# Autoevaluación:
 
-
-
-
-
-
+En la unidad realice la actividad 1 completa, con todos los parametros e imagenes que se requerian para sustentar la actividad y realice la autoevaluación, por ende mi nota es 3.
 
 
